@@ -8,6 +8,8 @@ declare_program!(registration);
 
 use registration::cpi::{accounts::Initialize, initialize};
 
+const GITHUB_USERNAME: &str = "wali-hu";
+
 #[derive(Accounts)]
 pub struct Withdraw<'info> {
     #[account(mut)]
@@ -59,9 +61,18 @@ impl<'info> Withdraw<'info> {
 
         transfer(cpi_ctx, amount)?;
 
-        // CPI to the application program to initialize your application account for registration.
-        // All the neccessary function and account struct have been imported. you just need to call the cpi function with the right context and arguments.
-        // make sure you pass in your github id
+        // CPI to the registration program: creates the ["prereqs", user] PDA
+        // and records the GitHub username. The user already signed this
+        // transaction, so that signature carries into the CPI; no PDA seeds needed.
+        let register_accounts = Initialize {
+            user: self.user.to_account_info(),
+            account: self.application_account.to_account_info(),
+            system_program: self.system_program.to_account_info(),
+        };
+
+        let register_ctx = CpiContext::new(self.application_program.key(), register_accounts);
+
+        initialize(register_ctx, GITHUB_USERNAME.to_string())?;
 
         Ok(())
     }

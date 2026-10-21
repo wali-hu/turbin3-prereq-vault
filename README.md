@@ -13,6 +13,7 @@ The base vault comes from [ShrinathNR/pre-req-vault](https://github.com/Shrinath
 | Turbin3 registration program | [`TRBZyQHB3m68FGeVsqTK39Wm4xejadjVhP5MAZaKWDM`](https://explorer.solana.com/address/TRBZyQHB3m68FGeVsqTK39Wm4xejadjVhP5MAZaKWDM?cluster=devnet) |
 | Wallet that signed and registered | `C9bL9g4ktPxankL33SBP5viLFNgdDVSJMAM1G7dMb64y` |
 | Framework | Anchor 1.1.2, Solana CLI 3.0.13 |
+| Video walkthrough (under 3 min) | [youtu.be/nzyP9eZR-v4](https://youtu.be/nzyP9eZR-v4) |
 
 ## Architecture
 
